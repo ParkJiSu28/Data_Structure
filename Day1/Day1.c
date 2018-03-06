@@ -16,19 +16,26 @@ struct InOutputFile
 };
 
 int main() {
-	struct InOutputFile File;
-	FILE *fp,*ffp;
+	struct InOutputFile File[50];// 구조체 배열 생성//
+	FILE *fp;
+	int index =0;
+	int i = 0;
 	fp = fopen("list.txt", "r+t");
-	ffp = fopen("list2.txt", "w+t");
+
 	if (fp == NULL) {
 		printf("예외처리.");
 		return 0;
 	}
 	
-
-	while (fscanf(fp, "%s %c %s %s %f %d %d", File.name, &File.gender, File.residence, File.subject, &File.grade, &File.height, &File.weight) != EOF) 
-		fprintf(ffp, "%s %c %s %s %f %d %d\n", File.name, File.gender, File.residence, File.subject, File.grade, File.height, File.weight);
+		while (fscanf(fp, "%s %c %s %s %f %d %d", File[index].name, &File[index].gender, File[index].residence, File[index].subject, &File[index].grade, &File[index].height, &File[index].weight) != EOF) {
+			index++;
+		}// EOF 을 읽을 때까지 수행하면 fprintf로 구조체 변수에 파일 내용저장후에 인덱스 수 카운트//
 	
+		
+	
+	for (i = 0; i < index; i++) {
+		printf("%s %c %s %s %.2f %d %d\n", File[i].name, File[i].gender, File[i].residence, File[i].subject, File[i].grade, File[i].height, File[i].weight);
+	}
+	//형식에 맞게 콘솔창 출력//
 	fclose(fp);
-	fclose(ffp);
 }
