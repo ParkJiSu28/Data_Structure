@@ -2,7 +2,7 @@
 #include<string.h>
 #pragma warning(disable:4996)
 
-
+/*
 struct InOutputFile
 {
 	char name[20];
@@ -39,3 +39,4 @@ int main() {
 	//형식에 맞게 콘솔창 출력//
 	fclose(fp);
 }
+*/
